@@ -2,7 +2,7 @@
 
 > Instruction for Claude: read this whole file first. Then read every file under "Must read before any change". Do not modify anything until you have fully understood the project. Keep this file updated as you work (see "Maintenance rules").
 
-Last updated: 2026-10-23 12:00
+Last updated: 2026-10-23 12:30
 
 ## 1. What this project is
 YT Hard Mode: browser extension for Firefox and Chromium (Brave, Chrome, Edge). Grayscales the whole YouTube page and shows a big `HH:MM:SS` watch-time timer over the video. Settings popup opens from the toolbar icon. DE/EN. Stack: WXT + TypeScript, Manifest V3, Vitest. Public repo `corixien/yt-hard-mode`, MIT. No network calls, no accounts; data in `storage.local`.
@@ -47,7 +47,7 @@ Run from repo root (`/home/mateo/yt-hard-mode`). Node 22+.
 - Not verified in a live browser yet: timing accuracy in background tabs (Chrome throttles timers to 1/min after 5 min hidden; ticks are coarser, pause events still fire).
 
 ## 6. Current state
-- Branch: `main`. Repo initialized; first commit pending at time of writing (check `git log -3`).
+- Branch: `main`, pushed. Tag `v1.0.0`, GitHub release with chrome and firefox zips.
 - Working tree: all v1 files new (see Done). Not yet committed/pushed unless `git log` shows it.
 - Goal of current task: v1 for Chromium and Firefox, all changes on `main`, tag `v1.0.0`.
 
@@ -57,13 +57,11 @@ Run from repo root (`/home/mateo/yt-hard-mode`). Node 22+.
 - [x] README (install steps), LICENSE (MIT), CLAUDE.md
 
 ### In progress
-- [ ] Milestone 6 / v1 release: commit, push `main`, tag `v1.0.0`, zips. Not yet done at time of writing.
+- [ ] Live-browser manual test (not done)
 
 ### Next steps
-1. `npm run check`, then commit all files on `main` and push to `origin`.
-2. Tag `v1.0.0`, push tag. Build zips (`npm run zip`, `npm run zip:firefox`).
-3. Give user install steps (README has them).
-4. Manual test in Brave and Firefox on youtube.com (not done): timer appears while playing, hides on pause, grayscale toggles, reset works.
+1. Manual test in Brave and Firefox (see item 4).
+2. Manual test in Brave and Firefox on youtube.com (not done): timer appears while playing, hides on pause, grayscale toggles, reset works.
 
 ### Open questions / blockers
 - Ads: default assumed "not counted" (not explicitly answered).
