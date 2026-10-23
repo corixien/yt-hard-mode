@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>YT Hard Mode</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="card">
+      <header class="head">
+        <span class="mark">YHM</span>
+        <h1>YT Hard Mode</h1>
+      </header>
+
+      <section class="group">
+        <label class="row">
+          <span class="text">
+            <strong data-i18n="grayscale"></strong>
+            <small data-i18n="grayscaleHint"></small>
+          </span>
+          <input id="grayscale" class="switch" type="checkbox" role="switch" />
+        </label>
+      </section>
+
+      <section class="group">
+        <label class="row">
+          <span class="text">
+            <strong data-i18n="timer"></strong>
+            <small data-i18n="timerHint"></small>
+          </span>
+          <input id="timer" class="switch" type="checkbox" role="switch" />
+        </label>
+        <div id="barSub" class="sub">
+          <div class="row">
+            <span data-i18n="barHeight"></span>
+            <output id="barValue"></output>
+          </div>
+          <input id="barHeight" type="range" min="24" max="160" step="2" />
+        </div>
+      </section>
+
+      <section class="stats">
+        <div>
+          <small data-i18n="today"></small>
+          <strong id="today">00:00:00</strong>
+        </div>
+        <button id="reset" class="ghost" type="button" data-i18n="reset"></button>
+      </section>
+
+      <div id="lang" class="lang" role="group" aria-label="Language">
+        <span data-i18n="language"></span>
+        <div class="seg">
+          <button type="button" data-lang="auto">Auto</button>
+          <button type="button" data-lang="de">DE</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+      </div>
+
+      <footer data-i18n="footer"></footer>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

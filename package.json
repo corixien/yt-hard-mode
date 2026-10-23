@@ -1,0 +1,25 @@
+{
+  "name": "yt-hard-mode",
+  "version": "1.0.0",
+  "private": true,
+  "description": "YouTube hard mode: grayscale and a big watch-time timer for Firefox and Chromium browsers",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "compile": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "npm run compile && npm run test && npm run build && npm run build:firefox"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chrome": "^0.3.6",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5",
+    "wxt": "^0.21.4"
+  }
+}
