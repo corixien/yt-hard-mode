@@ -1,6 +1,6 @@
 {
   "name": "yt-hard-mode",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "description": "YouTube hard mode: grayscale and a big watch-time timer for Firefox and Chromium browsers",
   "type": "module",
