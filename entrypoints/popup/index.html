@@ -31,12 +31,33 @@
           </span>
           <input id="timer" class="switch" type="checkbox" role="switch" />
         </label>
-        <div id="barSub" class="sub">
+        <div id="timerSub" class="sub">
           <div class="row">
-            <span data-i18n="barHeight"></span>
-            <output id="barValue"></output>
+            <span data-i18n="size"></span>
+            <output id="sizeValue"></output>
           </div>
-          <input id="barHeight" type="range" min="24" max="160" step="2" />
+          <input id="sizePercent" type="range" min="5" max="100" step="1" />
+          <label class="row">
+            <span data-i18n="backdrop"></span>
+            <input id="backdrop" class="switch" type="checkbox" role="switch" />
+          </label>
+        </div>
+      </section>
+
+      <section class="group">
+        <label class="row">
+          <span class="text">
+            <strong data-i18n="limit"></strong>
+            <small data-i18n="limitHint"></small>
+          </span>
+          <input id="limitEnabled" class="switch" type="checkbox" role="switch" />
+        </label>
+        <div id="limitSub" class="sub">
+          <label class="row">
+            <span data-i18n="limitMinutes"></span>
+            <input id="limitMinutes" class="number" type="number" min="1" max="720" step="1" />
+          </label>
+          <small id="limitInfo"></small>
         </div>
       </section>
 

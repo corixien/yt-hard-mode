@@ -1,5 +1,5 @@
 import { storage } from 'wxt/utils/storage';
-import { DEFAULT_SETTINGS, type Settings } from './settings';
+import { DEFAULT_SETTINGS, normalizeSettings, type Settings } from './settings';
 import type { Usage } from './usage';
 
 export const settingsItem = storage.defineItem<Settings>('local:settings', {
@@ -9,3 +9,5 @@ export const settingsItem = storage.defineItem<Settings>('local:settings', {
 export const usageItem = storage.defineItem<Usage>('local:usage', {
   fallback: { date: '', ms: 0 },
 });
+
+export const readSettings = async () => normalizeSettings(await settingsItem.getValue());

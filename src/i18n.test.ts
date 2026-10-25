@@ -13,7 +13,10 @@ describe('i18n', () => {
   });
 
   it('has non-empty text for every key in both locales', () => {
-    const keys: MessageKey[] = ['grayscale', 'timer', 'barHeight', 'today', 'reset', 'language', 'footer'];
+    const keys: MessageKey[] = [
+      'grayscale', 'timer', 'size', 'backdrop', 'limit', 'limitHint', 'limitMinutes',
+      'limitLeft', 'limitReached', 'today', 'reset', 'language', 'footer',
+    ];
     for (const key of keys) {
       expect(t(key, 'de')).not.toBe('');
       expect(t(key, 'en')).not.toBe('');

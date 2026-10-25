@@ -1,7 +1,8 @@
 export interface OverlayFrame {
   visible: boolean;
   text: string;
-  height: number;
+  height: number; // px
+  backdrop: boolean;
   rect: DOMRect | null;
 }
 
@@ -36,8 +37,12 @@ export function createTimerOverlay() {
         font-weight: 800;
         font-variant-numeric: tabular-nums;
         line-height: 1;
+        white-space: nowrap;
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
         user-select: none;
+      }
+      .band.plain {
+        background: transparent;
       }
     </style>
     <div class="band"></div>
@@ -48,13 +53,15 @@ export function createTimerOverlay() {
     mount(parent: Element) {
       if (host.parentElement !== parent) parent.appendChild(host);
     },
-    update({ visible, text, height, rect }: OverlayFrame) {
+    update({ visible, text, height, backdrop, rect }: OverlayFrame) {
       const show = visible && rect !== null;
       host.style.display = show ? 'block' : 'none';
       if (!show) return;
 
       band.textContent = text;
-      band.style.fontSize = `${Math.round(height * 0.7)}px`;
+      band.classList.toggle('plain', !backdrop);
+      // Font size is capped by width so the time always fits, even at full height.
+      band.style.fontSize = `${Math.round(Math.min(height * 0.7, rect.width / 5.2))}px`;
       host.style.width = `${rect.width}px`;
       host.style.height = `${height}px`;
 

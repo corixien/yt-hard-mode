@@ -269,3 +269,20 @@ footer {
   padding: 2px 8px 0;
   line-height: 1.5;
 }
+
+input.number {
+  width: 76px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.sub > small {
+  color: var(--muted);
+  font-size: 12px;
+}

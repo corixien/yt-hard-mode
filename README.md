@@ -3,7 +3,8 @@
 Browser extension for Firefox and Chromium browsers (Brave, Chrome, Edge). Makes YouTube harder to waste time on:
 
 - **Black & white:** grayscales the whole YouTube page.
-- **Time timer:** big white `HH:MM:SS` counter over the video while it plays. Counts the time you have videos playing in this browser, ads excluded. Resets daily at midnight; manual reset in the popup. Bar height is adjustable.
+- **Time timer:** big white `HH:MM:SS` counter over the video while it plays. Counts the time you have videos playing in this browser, ads excluded. Resets daily at midnight; manual reset in the popup. Size is adjustable (5-100% of the video height); the dark backdrop can be turned off.
+- **Daily limit:** set minutes per day. Once reached, the clock grows linearly over 5 minutes until it covers the whole video. A larger base size grows more slowly. Clicks pass through the clock, so the video stays usable. The limit can be switched off.
 - **Settings popup:** opens from the toolbar icon. English and German, dark or light depending on system.
 
 All data stays in the browser (`storage.local`). No network calls, no accounts.

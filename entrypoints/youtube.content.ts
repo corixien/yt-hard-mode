@@ -1,7 +1,8 @@
 import { browser } from 'wxt/browser';
-import { settingsItem } from '../src/storage';
+import { readSettings, settingsItem } from '../src/storage';
 import type { RuntimeMessage } from '../src/messages';
 import type { Settings } from '../src/settings';
+import { clockHeight } from '../src/growth';
 import { createTimerOverlay } from '../src/timer-overlay';
 import { formatHms } from '../src/usage';
 
@@ -18,7 +19,7 @@ export default defineContentScript({
     document.head.append(style);
 
     const overlay = createTimerOverlay();
-    let settings: Settings = await settingsItem.getValue();
+    let settings: Settings = await readSettings();
     let base = await send({ type: 'get' });
     let unsent = 0; // ms counted but not yet sent to the background
     let inflight = 0; // ms sent, reply pending
@@ -55,10 +56,15 @@ export default defineContentScript({
     function render() {
       const total = base + inflight + unsent;
       const rect = playing && video ? video.getBoundingClientRect() : null;
+      const limitMs = settings.limitEnabled ? settings.limitMinutes * 60_000 : null;
+      const height = rect
+        ? clockHeight(total, limitMs, (rect.height * settings.sizePercent) / 100, rect.height)
+        : 0;
       overlay.update({
         visible: settings.timer && playing,
         text: formatHms(total),
-        height: settings.barHeight,
+        height,
+        backdrop: settings.backdrop,
         rect,
       });
     }
@@ -108,7 +114,7 @@ export default defineContentScript({
     }
 
     applySettings(settings);
-    settingsItem.watch((next) => applySettings(next));
+    settingsItem.watch(async () => applySettings(await readSettings()));
     overlay.mount(document.fullscreenElement ?? document.body);
     document.addEventListener('fullscreenchange', () => {
       overlay.mount(document.fullscreenElement ?? document.body);
