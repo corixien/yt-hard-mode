@@ -8,7 +8,7 @@ Browser extension for Firefox and Chromium browsers (Brave, Chrome, Edge). Makes
 - **Daily limit:** set minutes per day. Once reached, the clock grows linearly over 5 minutes until it covers the whole video. A larger base size grows more slowly. Clicks pass through the clock, so the video stays usable. The limit can be switched off.
 - **Settings popup:** opens from the toolbar icon. English and German, dark or light depending on system.
 
-All data stays in the browser (`storage.local`). No network calls, no accounts.
+Data stays in your browser profile and your browser account sync (`storage.local`, `storage.sync`). No network calls, no accounts.
 
 ## Install (v1, from source or release zip)
 
