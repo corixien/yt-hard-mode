@@ -1,9 +1,9 @@
 import { browser } from 'wxt/browser';
-import { settingsItem, readSettings, usageItem } from '../../src/storage';
+import { settingsItem, readSettings } from '../../src/storage';
 import { LIMIT, normalizeSettings, type Language, type Settings } from '../../src/settings';
 import { resolveLocale, t, type MessageKey } from '../../src/i18n';
 import type { RuntimeMessage } from '../../src/messages';
-import { formatHms, todayMs } from '../../src/usage';
+import { formatHms } from '../../src/usage';
 
 const byId = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 
@@ -52,7 +52,7 @@ async function init() {
   }
 
   async function refreshToday() {
-    const totalMs = todayMs(await usageItem.getValue());
+    const totalMs = (await browser.runtime.sendMessage({ type: 'get' } satisfies RuntimeMessage)) as number;
     today.textContent = formatHms(totalMs);
 
     if (!settings.limitEnabled) {

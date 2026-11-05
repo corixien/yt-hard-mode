@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { addMs, formatHms, resetUsage, todayMs } from './usage';
+import { addMs, formatHms, resetUsage, sumToday, todayMs } from './usage';
 
 const day1 = new Date(2026, 9, 23, 12);
 const day2 = new Date(2026, 9, 24, 0, 5);
@@ -17,6 +17,16 @@ describe('usage', () => {
 
   it('resets to zero', () => {
     expect(todayMs(resetUsage(day1), day1)).toBe(0);
+  });
+
+  it('sums only entries from today across devices', () => {
+    const entries = [
+      { date: '2026-10-23', ms: 1000 },
+      { date: '2026-10-23', ms: 2000 },
+      { date: '2026-10-22', ms: 99_000 },
+    ];
+    expect(sumToday(entries, day1)).toBe(3000);
+    expect(sumToday([], day1)).toBe(0);
   });
 
   it('formats HH:MM:SS', () => {

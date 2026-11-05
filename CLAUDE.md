@@ -15,8 +15,9 @@ Browser extension (WXT, TypeScript, MV3) for Firefox and Chromium. Grayscale You
 - `src/`: shared pure logic (`usage`, `i18n`, `settings`), storage items, overlay.
 
 ## Invariants
-- Only the background writes `local:usage`. Content script and popup send messages.
+- Only the background writes `local:usage` and `usage:<deviceId>` in `storage.sync`. Content script and popup send messages. Total = sum of today entries over all devices; reset clears this device only.
 - Counted time = video playing, not ad (`.ad-showing`), any tab visibility.
+- Settings in `sync:settings`; device id in `local:deviceId`. Flush every 10 s (sync write quota).
 - Clock size: `sizePercent` of video height is the base; growth from `clockHeight` in `src/growth.ts`. Slider max = full video height.
 - No network calls, no analytics, no external hosts beyond `*://*.youtube.com/*`.
 - Git: all work on `main`, push directly.

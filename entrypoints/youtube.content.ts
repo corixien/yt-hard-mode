@@ -7,7 +7,7 @@ import { createTimerOverlay } from '../src/timer-overlay';
 import { formatHms } from '../src/usage';
 
 const TICK_MS = 1000;
-const FLUSH_MS = 5000;
+const FLUSH_MS = 10_000; // sync write quota: keep well under 120 writes/min
 const MAX_TICK_GAP_MS = 120_000; // larger gaps mean the tab or machine was suspended
 
 export default defineContentScript({

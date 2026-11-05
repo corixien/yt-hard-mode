@@ -3,18 +3,24 @@ export interface Usage {
   ms: number;
 }
 
-const dayKey = (now: Date) => now.toLocaleDateString('en-CA');
+export const todayKey = (now: Date = new Date()) => now.toLocaleDateString('en-CA');
 
 export function todayMs(usage: Usage, now: Date = new Date()): number {
-  return usage.date === dayKey(now) ? usage.ms : 0;
+  return usage.date === todayKey(now) ? usage.ms : 0;
+}
+
+// Sum of all entries that belong to today (one entry per device).
+export function sumToday(entries: Usage[], now: Date = new Date()): number {
+  const key = todayKey(now);
+  return entries.reduce((sum, e) => (e.date === key ? sum + e.ms : sum), 0);
 }
 
 export function addMs(usage: Usage, ms: number, now: Date = new Date()): Usage {
-  return { date: dayKey(now), ms: todayMs(usage, now) + ms };
+  return { date: todayKey(now), ms: todayMs(usage, now) + ms };
 }
 
 export function resetUsage(now: Date = new Date()): Usage {
-  return { date: dayKey(now), ms: 0 };
+  return { date: todayKey(now), ms: 0 };
 }
 
 export function formatHms(ms: number): string {
